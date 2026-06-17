@@ -431,7 +431,7 @@ else:
         for i, est in enumerate(["CA", "MI", "ME", "MG"]):
             n   = est_counts.get(est, 0)
             pct = n / r["total_plantas"] * 100 if r["total_plantas"] else 0
-            cols_est[i].metric(NOMBRES_EST[est], f"{n} pl.", f"{pct:.1f} %")
+            cols_est[i].metric(NOMBRES_EST[est], f"{n} ud.", f"{pct:.1f} %")
 
         st.markdown("#### Desglose por especie")
         rows = [
