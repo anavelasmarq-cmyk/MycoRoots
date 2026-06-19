@@ -354,9 +354,9 @@ st.divider()
 if st.session_state.resultado is None:
     # ── Pasos rápidos ─────────────────────────────────────────────────
     c1, c2, c3 = st.columns(3)
-    c1.info("**1. Configura** la parcela y el presupuesto en el panel izquierdo")
-    c2.info("**2. Personaliza** estratos, exclusiones y preferencias (opcional)")
-    c3.info("**3. Pulsa Generar** y descarga el plano, Excel y modelo 3D")
+    c1.success("**1. Configura** la parcela y el presupuesto en el panel izquierdo")
+    c2.success("**2. Personaliza** estratos, exclusiones y preferencias (opcional)")
+    c3.success("**3. Pulsa Generar** y descarga el plano, Excel y modelo 3D")
 
     st.divider()
 
@@ -415,9 +415,9 @@ if st.session_state.resultado is None:
     )
 
     col_p1, col_p2, col_p3 = st.columns(3)
-    col_p1.info("**A — Especie**\n\nLa especie a la que quieres dar protagonismo.")
-    col_p2.info("**B — Anillo**\n\nAnillo 1 = borde exterior. Último anillo = centro.")
-    col_p3.info("**C — Probabilidad (%)**\n\n1–25: puede aparecer pero no domina. 75–100: tiene muchas papeletas para ser seleccionada.")
+    col_p1.success("**A — Especie**\n\nLa especie a la que quieres dar protagonismo.")
+    col_p2.success("**B — Anillo**\n\nAnillo 1 = borde exterior. Último anillo = centro.")
+    col_p3.success("**C — Probabilidad (%)**\n\n1–25: puede aparecer pero no domina. 75–100: tiene muchas papeletas para ser seleccionada.")
 
     st.caption("Si una preferencia no es ecológicamente coherente, el generador muestra un aviso pero respeta la decisión sin bloquear la ejecución.")
 
@@ -427,11 +427,11 @@ if st.session_state.resultado is None:
     st.markdown("### Cómo leer el plano")
 
     col_v1, col_v2 = st.columns(2)
-    col_v1.info(
+    col_v1.success(
         "**Cuadrado de un solo color**\n\n"
         "Todas las plantas de esa celda (1 m²) pertenecen al mismo estrato."
     )
-    col_v2.info(
+    col_v2.success(
         "**Cuadrado con círculos de colores**\n\n"
         "Celda mixta con 2–3 plantas de estratos distintos. Cada círculo = una planta."
     )
