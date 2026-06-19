@@ -352,29 +352,110 @@ st.divider()
 
 # ── Pantalla de bienvenida ────────────────────────────────────────────
 if st.session_state.resultado is None:
+    # ── Pasos rápidos ─────────────────────────────────────────────────
     c1, c2, c3 = st.columns(3)
     c1.info("**1. Configura** la parcela y el presupuesto en el panel izquierdo")
     c2.info("**2. Personaliza** estratos, exclusiones y preferencias (opcional)")
     c3.info("**3. Pulsa Generar** y descarga el plano, Excel y modelo 3D")
 
-    st.markdown("""
-    ### ¿Qué es un HyphaPod?
-    Sistema de diseño de microbosques urbanos basado en el **Método Miyawaki**,
-    adaptado a las condiciones climáticas y florísticas de **Córdoba** (clima mediterráneo continental).
-    Genera automáticamente la distribución de plantas en una parcela rectangular,
-    respetando el gradiente de estratos concéntrico del método.
+    st.divider()
 
-    | Estrato | Código | Altura aprox. | Posición en el diseño |
-    |---------|--------|---------------|----------------------|
-    | Caméfitas | **CA** | < 1 m | Anillo exterior (borde) |
-    | Microfanerófitas | **MI** | 1–4 m | Anillos intermedios |
-    | Mesofanerófitas | **ME** | 3–10 m | Anillos interiores |
-    | Megafanerófitas | **MG** | 8–30 m | Núcleo central |
+    # ── ¿Qué es un HyphaPod? ────────────────────────────────────────────
+    st.markdown("### ¿Qué es un HyphaPod?")
+    st.markdown(
+        "Sistema de diseño de microbosques urbanos basado en el **método Miyawaki**, "
+        "adaptado a las condiciones climáticas y florísticas de **Córdoba** "
+        "(clima mediterráneo continental). Genera automáticamente la distribución "
+        "de plantas en una parcela rectangular, respetando el gradiente de estratos "
+        "concéntrico del método."
+    )
+
+    st.markdown("""
+    | Estrato | Código | Altura | Posición en el diseño |
+    |---|---|---|---|
+    | 🟢 Caméfitas | **CA** | < 1 m | Borde exterior |
+    | 🟩 Microfanerófitas | **MI** | 1–4 m | Anillos intermedios |
+    | 🌿 Mesofanerófitas | **ME** | 3–10 m | Anillos interiores |
+    | 🌲 Megafanerófitas | **MG** | 8–30 m | Núcleo central |
     """)
 
-    # ── Catálogo de especies ──────────────────────────────────────────
-    st.markdown("### 📖 Catálogo de especies")
-    st.caption("Consulta las especies disponibles con fichas fotográficas y datos agronómicos.")
+    st.divider()
+
+    # ── Cómo funciona el generador ──────────────────────────────────────
+    st.markdown("### Cómo genera el diseño el generador")
+    st.markdown(
+        "El generador no coloca las plantas de forma fija: cada vez que se pulsa "
+        "**Generar diseño**, el resultado es distinto. El sistema sigue dos reglas simultáneas:"
+    )
+
+    col_a, col_b = st.columns(2)
+    with col_a:
+        st.success(
+            "**1 — Gradiente de alturas**\n\n"
+            "La posición de cada celda determina qué estrato tiene más probabilidades "
+            "de aparecer. Borde → plantas bajas (CA). Centro → árboles altos (MG). "
+            "Las zonas intermedias mezclan estratos, generando transiciones naturales."
+        )
+    with col_b:
+        st.success(
+            "**2 — Diversidad obligatoria**\n\n"
+            "Dentro de cada celda de 1 m² nunca se repite la misma especie. "
+            "La competencia interespecífica entre plantas de distinto porte es "
+            "uno de los principios clave del método Miyawaki."
+        )
+
+    st.divider()
+
+    # ── Preferencias de diseño ──────────────────────────────────────────
+    st.markdown("### Preferencias de diseño")
+    st.markdown(
+        "Permiten modificar las probabilidades por defecto para que una especie "
+        "tenga más o menos presencia en una zona concreta. Se añaden una a una "
+        "con el botón ➕ en el panel izquierdo."
+    )
+
+    col_p1, col_p2, col_p3 = st.columns(3)
+    col_p1.info("**A — Especie**\n\nLa especie a la que quieres dar protagonismo.")
+    col_p2.info("**B — Anillo**\n\nAnillo 1 = borde exterior. Último anillo = centro.")
+    col_p3.info("**C — Probabilidad (%)**\n\n1–25: puede aparecer pero no domina. 75–100: tiene muchas papeletas para ser seleccionada.")
+
+    st.caption("Si una preferencia no es ecológicamente coherente, el generador muestra un aviso pero respeta la decisión sin bloquear la ejecución.")
+
+    st.divider()
+
+    # ── Cómo leer el plano ───────────────────────────────────────────────
+    st.markdown("### Cómo leer el plano")
+
+    col_v1, col_v2 = st.columns(2)
+    col_v1.info(
+        "**Cuadrado de un solo color**\n\n"
+        "Todas las plantas de esa celda (1 m²) pertenecen al mismo estrato."
+    )
+    col_v2.info(
+        "**Cuadrado con círculos de colores**\n\n"
+        "Celda mixta con 2–3 plantas de estratos distintos. Cada círculo = una planta."
+    )
+
+    st.caption("La vista previa es orientativa. Para ver los códigos de especie con detalle, usa los archivos de descarga (PDF A1, Excel, DXF o modelo 3D GLB).")
+
+    st.divider()
+
+    # ── Descargas disponibles ────────────────────────────────────────────
+    st.markdown("### Archivos disponibles tras generar")
+    st.markdown("""
+    | Archivo | Contenido |
+    |---|---|
+    | **Excel** | Cuadrícula del diseño por celdas y desglose de costes |
+    | **PDF — DIN A1** | Plano técnico con leyenda, escala gráfica y cajetín |
+    | **DXF** | Plano vectorial compatible con AutoCAD, QGIS y LibreCAD |
+    | **GLB** | Modelo 3D volumétrico — abrir en [3dviewer.net](https://3dviewer.net) |
+    """)
+
+    st.divider()
+
+    # ── Catálogo de especies ─────────────────────────────────────────────
+    st.markdown("### Catálogo de especies")
+    st.caption("39 especies autóctonas vasculares seleccionadas para las condiciones de Córdoba, con datos agronómicos y fichas fotográficas.")
 
     _CAT_DIR = os.path.join(_APP_DIR, "catálogos")
     _pdf_path = os.path.join(_CAT_DIR, "cátalogo_mycoroots.pdf")
@@ -384,7 +465,7 @@ if st.session_state.resultado is None:
     if os.path.exists(_pdf_path):
         with open(_pdf_path, "rb") as f:
             cat_col1.download_button(
-                label="⬇️ Catálogo con fotos (PDF)",
+                label="Descargar catálogo con fotos (PDF)",
                 data=f.read(),
                 file_name="catálogo_mycoroots.pdf",
                 mime="application/pdf",
@@ -393,7 +474,7 @@ if st.session_state.resultado is None:
     if os.path.exists(_xls_path):
         with open(_xls_path, "rb") as f:
             cat_col2.download_button(
-                label="⬇️ Catálogo de especies (Excel)",
+                label="Descargar catálogo de especies (Excel)",
                 data=f.read(),
                 file_name="catálogo_especies_mycoroots.xlsx",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
