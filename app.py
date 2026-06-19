@@ -372,6 +372,68 @@ if st.session_state.resultado is None:
     | Megafanerófitas | **MG** | 8–30 m | Núcleo central |
     """)
 
+    st.markdown("""
+    ---
+
+    ### 📋 Cómo usar la aplicación
+
+    **1. Configura la parcela** — Introduce las dimensiones y el presupuesto máximo en el panel izquierdo. La superficie debe estar entre 100 y 300 m².
+
+    **2. Personaliza el diseño** *(opcional)* — Activa "Personalizar el diseño" para ajustar estratos, excluir especies o indicar preferencias de plantación por zona. Si no se activa, el generador aplica el gradiente ecológico por defecto.
+
+    **3. Pulsa "Generar diseño"** — El generador calcula la distribución de plantas, el coste estimado y genera todos los archivos de salida.
+
+    **4. Consulta y descarga** — Los resultados aparecen en tres pestañas: resumen económico, plano visual y descargas.
+
+    ---
+
+    ### 🎲 Cómo genera el diseño el generador
+
+    El generador no coloca las plantas de forma fija ni repetible: cada vez que se pulsa "Generar diseño", el resultado es distinto. Esto es deliberado.
+
+    El sistema asigna a cada metro cuadrado de la parcela un conjunto de plantas siguiendo dos reglas simultáneas:
+
+    1. **Gradiente de alturas**: la posición de cada celda en la parcela determina qué estrato tiene más probabilidades de aparecer en ella. Las celdas del borde exterior tienen muchas papeletas para las plantas más bajas (caméfitas); las del centro, para los árboles más altos (megafanerófitas). Las zonas intermedias mezclan estratos en proporciones variables, generando transiciones suaves y naturales, igual que ocurre en un bosque real.
+
+    2. **Diversidad obligatoria**: dentro de cada celda de 1 m², nunca se repite la misma especie. Esto reproduce uno de los principios clave del método Miyawaki: la competencia interespecífica entre plantas de distinto porte estimula el crecimiento en altura y acelera el desarrollo del bosque.
+
+    La combinación de estas dos reglas garantiza que todos los diseños generados sean ecológicamente coherentes y distintos entre sí, aunque partan de los mismos parámetros.
+
+    ---
+
+    ### 🎛️ Preferencias de diseño
+
+    Permiten modificar las probabilidades por defecto para que una especie concreta tenga más o menos presencia en una zona determinada. Se añaden una a una con el botón ➕:
+
+    - **Especie**: la especie a la que quieres dar protagonismo.
+    - **Anillo**: la zona de la parcela (anillo 1 = borde exterior, último anillo = centro).
+    - **Probabilidad (%)**: valores bajos (1–25) hacen que la especie pueda aparecer pero sin dominar; valores altos (75–100) le dan muchas papeletas para ser seleccionada en esa zona. No es una garantía absoluta, sino una influencia sobre el sorteo aleatorio del generador.
+
+    > Si una preferencia no es ecológicamente coherente, el generador muestra un aviso pero respeta la decisión sin bloquear la ejecución.
+
+    ---
+
+    ### 🗺️ Cómo leer el plano
+
+    Cada cuadrado representa **1 m²** de parcela:
+
+    - **Cuadrado de un solo color**: todas las plantas de esa celda pertenecen al mismo estrato.
+    - **Cuadrado con círculos de distintos colores**: celda mixta con 2–3 plantas de estratos diferentes. Cada círculo es una planta.
+
+    La vista previa es orientativa. Para ver los códigos de especie con detalle, usa los archivos de descarga.
+
+    ---
+
+    ### 📥 Archivos disponibles en "Descargas"
+
+    | Archivo | Contenido |
+    |---------|-----------|
+    | **Excel** | Cuadrícula del diseño por celdas y desglose de costes por especie |
+    | **PDF (DIN A1)** | Plano técnico con leyenda, escala gráfica y cajetín |
+    | **DXF** | Plano vectorial compatible con AutoCAD, QGIS y LibreCAD |
+    | **GLB** | Modelo 3D volumétrico — ábrelo en [3dviewer.net](https://3dviewer.net) |
+    """)
+
     # ── Catálogo de especies ──────────────────────────────────────────
     st.markdown("### 📖 Catálogo de especies")
     st.caption("Consulta las especies disponibles con fichas fotográficas y datos agronómicos.")
