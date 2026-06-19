@@ -357,179 +357,48 @@ if st.session_state.resultado is None:
     c2.info("**2. Personaliza** estratos, exclusiones y preferencias (opcional)")
     c3.info("**3. Pulsa Generar** y descarga el plano, Excel y modelo 3D")
 
-    st.html("""
-    <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    .h-block{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.25rem 1.5rem;margin:0 0 1rem}
-    .h-head{display:flex;align-items:center;gap:10px;margin:0 0 1rem;padding-bottom:0.75rem;border-bottom:0.5px solid var(--color-border-tertiary)}
-    .h-icon{width:32px;height:32px;border-radius:8px;background:#EAF3DE;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .h-icon svg{display:block}
-    .h-title{font-size:15px;font-weight:500;color:var(--color-text-primary)}
-    .h-desc{font-size:13px;color:var(--color-text-secondary);line-height:1.7;margin:0 0 1.25rem}
-    .h-table{width:100%;border-collapse:collapse;font-size:13px}
-    .h-table th{text-align:left;font-weight:500;font-size:11px;color:var(--color-text-secondary);padding:5px 10px;border-bottom:0.5px solid var(--color-border-tertiary);text-transform:uppercase;letter-spacing:0.05em}
-    .h-table td{padding:9px 10px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary);vertical-align:middle;font-size:13px}
-    .h-table tr:last-child td{border-bottom:none}
-    .h-dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:8px;vertical-align:middle;flex-shrink:0}
-    .h-cod{font-family:monospace;font-size:11px;font-weight:500;background:#EAF3DE;color:#27500A;border-radius:4px;padding:2px 7px;letter-spacing:0.03em}
-    .h-pos{font-size:12px;color:var(--color-text-secondary)}
-    .h-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0.75rem 0 0}
-    .h-cat-card{background:#F5F9F0;border:0.5px solid #C0DD97;border-radius:8px;padding:12px 14px;display:flex;align-items:center;gap:12px}
-    .h-cat-icon{width:36px;height:36px;border-radius:7px;background:#EAF3DE;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .h-cat-label{font-size:13px;font-weight:500;color:#27500A}
-    .h-cat-sub{font-size:11px;color:#3B6D11;margin-top:2px}
-    .h-step-grid{display:flex;flex-direction:column;gap:12px}
-    .h-step{display:flex;gap:14px;align-items:flex-start}
-    .h-step-num{width:24px;height:24px;border-radius:50%;background:#EAF3DE;border:0.5px solid #C0DD97;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:#27500A;flex-shrink:0;margin-top:1px}
-    .h-step-body p{font-size:13px;font-weight:500;color:var(--color-text-primary);margin:0 0 2px}
-    .h-step-body span{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
-    .h-pref-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0.75rem 0 0}
-    .h-pref-box{background:#F5F9F0;border:0.5px solid #C0DD97;border-radius:8px;padding:12px 13px}
-    .h-pref-letter{font-size:10px;font-weight:500;color:#3B6D11;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:5px}
-    .h-pref-box p{font-size:13px;font-weight:500;color:var(--color-text-primary);margin:0 0 3px}
-    .h-pref-box span{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
-    .h-viz-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0.75rem 0 1rem}
-    .h-viz-box{background:#F5F9F0;border:0.5px solid #C0DD97;border-radius:8px;padding:12px 14px;display:flex;gap:12px;align-items:flex-start}
-    .h-viz-box p{font-size:13px;font-weight:500;color:var(--color-text-primary);margin:0 0 3px}
-    .h-viz-box span{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
-    .h-strat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 1rem}
-    .h-strat{border-radius:8px;padding:10px 12px;border:0.5px solid transparent}
-    .h-strat p{font-size:12px;font-weight:500;margin:0 0 2px}
-    .h-strat span{font-size:11px;line-height:1.4}
-    .h-note{border-left:2px solid #C0DD97;padding:8px 14px}
-    .h-note span{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
-    .h-dl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:0.75rem 0 0}
-    .h-dl{background:#F5F9F0;border:0.5px solid #C0DD97;border-radius:8px;padding:11px 14px;display:flex;gap:10px;align-items:center}
-    .h-dl p{font-size:13px;font-weight:500;color:#27500A;margin:0 0 1px}
-    .h-dl span{font-size:11px;color:#3B6D11}
-    </style>
+    st.markdown("""
+    ### ¿Qué es un HyphaPod?
+    Sistema de diseño de microbosques urbanos basado en el **Método Miyawaki**,
+    adaptado a las condiciones climáticas y florísticas de **Córdoba** (clima mediterráneo continental).
+    Genera automáticamente la distribución de plantas en una parcela rectangular,
+    respetando el gradiente de estratos concéntrico del método.
 
-    <div style="padding:0.25rem 0 1rem">
-
-    <div class="h-block">
-      <div class="h-head">
-        <div class="h-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2C5.5 2 3 4 3 7c0 2 1 3.5 2.5 4.5V13h5v-1.5C12 10.5 13 9 13 7c0-3-2.5-5-5-5z" stroke="#3B6D11" stroke-width="1.1" stroke-linejoin="round"/><path d="M6 13h4" stroke="#3B6D11" stroke-width="1.1" stroke-linecap="round"/></svg></div>
-        <span class="h-title">¿Qué es un HyphaPod?</span>
-      </div>
-      <p class="h-desc">Sistema de diseño de microbosques urbanos basado en el <strong style="font-weight:500;color:var(--color-text-primary)">método Miyawaki</strong>, adaptado a las condiciones climáticas y florísticas de <strong style="font-weight:500;color:var(--color-text-primary)">Córdoba</strong> (clima mediterráneo continental). Genera automáticamente la distribución de plantas en una parcela rectangular, respetando el gradiente de estratos concéntrico del método.</p>
-      <table class="h-table">
-        <thead><tr><th>Estrato</th><th>Código</th><th>Altura</th><th>Posición</th></tr></thead>
-        <tbody>
-          <tr><td><span class="h-dot" style="background:#D6EAD0;border:0.5px solid #aaa"></span>Caméfitas</td><td><span class="h-cod">CA</span></td><td>&lt; 1 m</td><td><span class="h-pos">Borde exterior</span></td></tr>
-          <tr><td><span class="h-dot" style="background:#9FCD88"></span>Microfanerófitas</td><td><span class="h-cod">MI</span></td><td>1–4 m</td><td><span class="h-pos">Anillos intermedios</span></td></tr>
-          <tr><td><span class="h-dot" style="background:#4E9940"></span>Mesofanerófitas</td><td><span class="h-cod">ME</span></td><td>3–10 m</td><td><span class="h-pos">Anillos interiores</span></td></tr>
-          <tr><td><span class="h-dot" style="background:#3A6B27"></span>Megafanerófitas</td><td><span class="h-cod">MG</span></td><td>8–30 m</td><td><span class="h-pos">Núcleo central</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="h-block">
-      <div class="h-head">
-        <div class="h-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="#3B6D11" stroke-width="1.1"/><path d="M5 8h6M5 5.5h6M5 10.5h4" stroke="#3B6D11" stroke-width="1" stroke-linecap="round"/></svg></div>
-        <span class="h-title">Catálogo de especies</span>
-      </div>
-      <p class="h-desc">39 especies autóctonas vasculares seleccionadas para las condiciones de Córdoba, con datos agronómicos y fichas fotográficas.</p>
-      <div class="h-cat-grid">
-        <div class="h-cat-card">
-          <div class="h-cat-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="1" width="10" height="14" rx="1.5" stroke="#3B6D11" stroke-width="1.1"/><path d="M5 5h6M5 8h6M5 11h3" stroke="#3B6D11" stroke-width="1" stroke-linecap="round"/></svg></div>
-          <div><div class="h-cat-label">Catálogo con fotos</div><div class="h-cat-sub">Descargar PDF</div></div>
-        </div>
-        <div class="h-cat-card">
-          <div class="h-cat-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="#3B6D11" stroke-width="1.1"/><path d="M1 6h14M5 6v7" stroke="#3B6D11" stroke-width="1" stroke-linecap="round"/></svg></div>
-          <div><div class="h-cat-label">Catálogo de especies</div><div class="h-cat-sub">Descargar Excel</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="h-block">
-      <div class="h-head">
-        <div class="h-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#3B6D11" stroke-width="1.1"/><path d="M8 5v3l2 2" stroke="#3B6D11" stroke-width="1.1" stroke-linecap="round"/></svg></div>
-        <span class="h-title">Cómo usar la aplicación</span>
-      </div>
-      <div class="h-step-grid">
-        <div class="h-step"><div class="h-step-num">1</div><div class="h-step-body"><p>Configura la parcela</p><span>Introduce las dimensiones y el presupuesto máximo en el panel izquierdo. La superficie debe estar entre 100 y 300 m².</span></div></div>
-        <div class="h-step"><div class="h-step-num">2</div><div class="h-step-body"><p>Personaliza el diseño <em style="font-weight:400;color:var(--color-text-secondary)">(opcional)</em></p><span>Activa "Personalizar el diseño" para ajustar estratos, excluir especies o indicar preferencias de plantación por zona.</span></div></div>
-        <div class="h-step"><div class="h-step-num">3</div><div class="h-step-body"><p>Pulsa "Generar diseño"</p><span>El generador calcula la distribución de plantas, el coste estimado y genera todos los archivos de salida.</span></div></div>
-        <div class="h-step"><div class="h-step-num">4</div><div class="h-step-body"><p>Consulta y descarga</p><span>Los resultados aparecen en tres pestañas: resumen económico, plano visual y descargas.</span></div></div>
-      </div>
-    </div>
-
-    <div class="h-block">
-      <div class="h-head">
-        <div class="h-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 13l3-4 3 2 3-5 3 7" stroke="#3B6D11" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <span class="h-title">Cómo genera el diseño el generador</span>
-      </div>
-      <p class="h-desc">El generador no coloca las plantas de forma fija: cada resultado es distinto. El sistema sigue dos reglas simultáneas:</p>
-      <div class="h-step-grid" style="margin:0 0 0">
-        <div class="h-step"><div class="h-step-num">1</div><div class="h-step-body"><p>Gradiente de alturas</p><span>La posición de cada celda determina qué estrato tiene más probabilidades de aparecer. Borde → plantas bajas (CA). Centro → árboles altos (MG). Las zonas intermedias mezclan estratos en proporciones variables, generando transiciones naturales.</span></div></div>
-        <div class="h-step"><div class="h-step-num">2</div><div class="h-step-body"><p>Diversidad obligatoria</p><span>Dentro de cada celda de 1 m² nunca se repite la misma especie. La competencia interespecífica entre plantas de distinto porte es uno de los principios clave del método Miyawaki.</span></div></div>
-      </div>
-    </div>
-
-    <div class="h-block">
-      <div class="h-head">
-        <div class="h-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" stroke="#3B6D11" stroke-width="1.1"/><rect x="9" y="2" width="5" height="5" rx="1" stroke="#3B6D11" stroke-width="1.1"/><rect x="2" y="9" width="5" height="5" rx="1" stroke="#3B6D11" stroke-width="1.1"/><rect x="9" y="9" width="5" height="5" rx="1" stroke="#3B6D11" stroke-width="1.1"/></svg></div>
-        <span class="h-title">Preferencias de diseño</span>
-      </div>
-      <p class="h-desc">Permiten modificar las probabilidades por defecto para que una especie tenga más o menos presencia en una zona concreta. Se añaden una a una con el botón ➕.</p>
-      <div class="h-pref-grid">
-        <div class="h-pref-box"><div class="h-pref-letter">A — Especie</div><span>La especie a la que quieres dar protagonismo en una zona concreta de la parcela.</span></div>
-        <div class="h-pref-box"><div class="h-pref-letter">B — Anillo</div><span>La zona de la parcela. Anillo 1 = borde. Último anillo = centro.</span></div>
-        <div class="h-pref-box"><div class="h-pref-letter">C — Probabilidad (%)</div><span>1–25: puede aparecer pero no domina. 75–100: muchas papeletas para ser seleccionada.</span></div>
-      </div>
-      <div class="h-note" style="margin-top:1rem"><span>Si una preferencia no es ecológicamente coherente, el generador muestra un aviso pero respeta la decisión sin bloquear la ejecución.</span></div>
-    </div>
-
-    <div class="h-block">
-      <div class="h-head">
-        <div class="h-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" stroke="#3B6D11" stroke-width="1.1"/><rect x="9" y="2" width="5" height="5" rx="1" stroke="#3B6D11" stroke-width="1.1"/><rect x="2" y="9" width="5" height="5" rx="1" stroke="#3B6D11" stroke-width="1.1"/><rect x="9" y="9" width="5" height="5" rx="1" stroke="#3B6D11" stroke-width="1.1"/></svg></div>
-        <span class="h-title">Cómo leer el plano</span>
-      </div>
-      <div class="h-viz-grid">
-        <div class="h-viz-box">
-          <svg width="40" height="40" viewBox="0 0 40 40"><rect x="2" y="2" width="36" height="36" rx="4" fill="#9FCD88"/><circle cx="20" cy="20" r="10" fill="#D6EAD0" stroke="#1A3A1A" stroke-width="0.8"/><text x="20" y="24" text-anchor="middle" font-size="7" font-weight="bold" fill="#111">CA01</text></svg>
-          <div><p>Cuadrado de un color</p><span>Todas las plantas de esa celda (1 m²) pertenecen al mismo estrato.</span></div>
-        </div>
-        <div class="h-viz-box">
-          <svg width="40" height="40" viewBox="0 0 40 40"><rect x="2" y="2" width="36" height="36" rx="4" fill="#BBDCA8"/><circle cx="14" cy="14" r="8" fill="#D6EAD0" stroke="#1A3A1A" stroke-width="0.8"/><text x="14" y="18" text-anchor="middle" font-size="6" font-weight="bold" fill="#111">CA03</text><circle cx="28" cy="28" r="8" fill="#4E9940" stroke="#1A3A1A" stroke-width="0.8"/><text x="28" y="32" text-anchor="middle" font-size="6" font-weight="bold" fill="white">ME02</text></svg>
-          <div><p>Cuadrado con círculos</p><span>Celda mixta con 2–3 plantas de estratos distintos. Cada círculo = una planta.</span></div>
-        </div>
-      </div>
-      <div class="h-strat-grid">
-        <div class="h-strat" style="background:#F0F8EC;border-color:#C8DDB8"><p style="color:#27500A">CA — Caméfitas</p><span style="color:#3B6D11">Borde exterior · &lt; 1 m</span></div>
-        <div class="h-strat" style="background:#E4F2D8;border-color:#9FCD88"><p style="color:#27500A">MI — Microfaner.</p><span style="color:#3B6D11">Intermedios · 1–4 m</span></div>
-        <div class="h-strat" style="background:#C8DFB0;border-color:#4E9940"><p style="color:#1A4D0A">ME — Mesofaner.</p><span style="color:#27500A">Interiores · 3–10 m</span></div>
-        <div class="h-strat" style="background:#3A6B27;border-color:#27500A"><p style="color:#EAF3DE">MG — Megafaner.</p><span style="color:#C0DD97">Núcleo · 8–30 m</span></div>
-      </div>
-      <div class="h-note"><span>La vista previa es orientativa. Para ver los códigos de especie con detalle, usa los archivos de descarga.</span></div>
-    </div>
-
-    <div class="h-block">
-      <div class="h-head">
-        <div class="h-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8M5 7l3 3 3-3" stroke="#3B6D11" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 13h10" stroke="#3B6D11" stroke-width="1.1" stroke-linecap="round"/></svg></div>
-        <span class="h-title">Archivos disponibles en Descargas</span>
-      </div>
-      <div class="h-dl-grid">
-        <div class="h-dl"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="#3B6D11" stroke-width="1.1"/><path d="M1 6h14M5 6v7" stroke="#3B6D11" stroke-width="1" stroke-linecap="round"/></svg><div><p>Excel</p><span>Cuadrícula del diseño y desglose de costes</span></div></div>
-        <div class="h-dl"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="1" width="10" height="14" rx="1.5" stroke="#3B6D11" stroke-width="1.1"/><path d="M5 5h6M5 8h6M5 11h3" stroke="#3B6D11" stroke-width="1" stroke-linecap="round"/></svg><div><p>PDF — DIN A1</p><span>Plano técnico con leyenda y cajetín</span></div></div>
-        <div class="h-dl"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 14l4-4m0 0l2-6 2 6m-4 0h4m2 4l-4-4" stroke="#3B6D11" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg><div><p>DXF — plano CAD</p><span>Compatible con AutoCAD, QGIS y LibreCAD</span></div></div>
-        <div class="h-dl"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2l4 2.5v5L8 12 4 9.5v-5L8 2z" stroke="#3B6D11" stroke-width="1.1" stroke-linejoin="round"/><path d="M8 2v10M4 4.5l4 3 4-3" stroke="#3B6D11" stroke-width="1" stroke-linecap="round"/></svg><div><p>GLB — modelo 3D</p><span>Visualizable en 3dviewer.net</span></div></div>
-      </div>
-    </div>
-
-    </div>
+    | Estrato | Código | Altura aprox. | Posición en el diseño |
+    |---------|--------|---------------|----------------------|
+    | Caméfitas | **CA** | < 1 m | Anillo exterior (borde) |
+    | Microfanerófitas | **MI** | 1–4 m | Anillos intermedios |
+    | Mesofanerófitas | **ME** | 3–10 m | Anillos interiores |
+    | Megafanerófitas | **MG** | 8–30 m | Núcleo central |
     """)
+
+    # ── Catálogo de especies ──────────────────────────────────────────
+    st.markdown("### 📖 Catálogo de especies")
+    st.caption("Consulta las especies disponibles con fichas fotográficas y datos agronómicos.")
 
     _CAT_DIR = os.path.join(_APP_DIR, "catálogos")
     _pdf_path = os.path.join(_CAT_DIR, "cátalogo_mycoroots.pdf")
     _xls_path = os.path.join(_CAT_DIR, "catálogo_especies_mycoroots.xlsx")
+
     cat_col1, cat_col2 = st.columns(2)
     if os.path.exists(_pdf_path):
         with open(_pdf_path, "rb") as f:
-            cat_col1.download_button("Descargar catálogo PDF", f.read(), "catálogo_mycoroots.pdf", "application/pdf", use_container_width=True)
+            cat_col1.download_button(
+                label="⬇️ Catálogo con fotos (PDF)",
+                data=f.read(),
+                file_name="catálogo_mycoroots.pdf",
+                mime="application/pdf",
+                use_container_width=True,
+            )
     if os.path.exists(_xls_path):
         with open(_xls_path, "rb") as f:
-            cat_col2.download_button("Descargar catálogo Excel", f.read(), "catálogo_especies_mycoroots.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", use_container_width=True)
+            cat_col2.download_button(
+                label="⬇️ Catálogo de especies (Excel)",
+                data=f.read(),
+                file_name="catálogo_especies_mycoroots.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                use_container_width=True,
+            )
 
 # ── Resultados ────────────────────────────────────────────────────────
 else:
