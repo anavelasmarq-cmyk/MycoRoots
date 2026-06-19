@@ -373,10 +373,10 @@ if st.session_state.resultado is None:
     st.markdown("""
     | Estrato | Código | Altura | Posición en el diseño |
     |---|---|---|---|
-    | 🟢 Caméfitas | **CA** | < 1 m | Borde exterior |
-    | 🟩 Microfanerófitas | **MI** | 1–4 m | Anillos intermedios |
-    | 🌿 Mesofanerófitas | **ME** | 3–10 m | Anillos interiores |
-    | 🌲 Megafanerófitas | **MG** | 8–30 m | Núcleo central |
+    | Caméfitas | **CA** | < 1 m | Borde exterior |
+    | Microfanerófitas | **MI** | 1–4 m | Anillos intermedios |
+    | Mesofanerófitas | **ME** | 3–10 m | Anillos interiores |
+    | Megafanerófitas | **MG** | 8–30 m | Núcleo central |
     """)
 
     st.divider()
