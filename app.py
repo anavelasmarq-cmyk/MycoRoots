@@ -398,10 +398,10 @@ if st.session_state.resultado is None:
         )
     with col_b:
         st.success(
-            "**2 — Diversidad obligatoria**\n\n"
-            "Dentro de cada celda de 1 m² nunca se repite la misma especie. "
-            "La competencia interespecífica entre plantas de distinto porte es "
-            "uno de los principios clave del método Miyawaki."
+            "**2 — Diversidad por probabilidad**\n\n"
+            "La selección de especies dentro de cada celda es aleatoria y ponderada. "
+            "Esto favorece la mezcla interespecífica entre plantas de distinto porte, "
+            "reproduciendo la variabilidad natural de un bosque mediterráneo."
         )
 
     st.divider()
